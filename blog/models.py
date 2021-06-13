@@ -16,8 +16,8 @@ class UserProfile(models.Model):
     avatar = models.FileField(upload_to='files/user_avatar/', null = False , blank = False , validators=[validate_file_extension])
     description = models.CharField(max_length=512 , null = False , blank = False)
 
-
-
+    def __str__(self):
+        return self.user.first_name + ' ' + self.user.last_name
 
 class Article(models.Model):
     title = models.CharField(max_length=128 , null = False , blank = False)
@@ -27,9 +27,14 @@ class Article(models.Model):
     category = models.ForeignKey('Category' , on_delete= models.CASCADE)
     author = models.OneToOneField(UserProfile , on_delete=models.CASCADE)
 
+    
+
 class Category(models.Model):
     title = models.CharField(max_length=128 , null = False , blank = False)
     cover = models.FileField(upload_to='files/category_cover/', null =False , blank = False , validators=[validate_file_extension])
+
+    class meta:
+        verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.title
