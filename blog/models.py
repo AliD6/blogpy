@@ -16,8 +16,8 @@ class UserProfile(models.Model):
     avatar = models.FileField(upload_to='files/user_avatar/', null = False , blank = False , validators=[validate_file_extension])
     description = models.CharField(max_length=512 , null = False , blank = False)
 
-    def __str__(self):
-        return self.user.first_name + ' ' + self.user.last_name
+    # def __str__(self):
+    #     return self.user.first_name + ' ' + self.user.last_name
 
 class Article(models.Model):
     title = models.CharField(max_length=128 , null = False , blank = False)
@@ -36,6 +36,6 @@ class Category(models.Model):
     class meta:
         verbose_name_plural = "Categories"
 
-    def __str__(self):
-        return self.title
+    # def __str__(self):
+    #     return self.title
 
